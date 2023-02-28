@@ -12,7 +12,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view("Product.showMany", [
+            "title" => "Todos los productos",
+            "products"=>$products
+        ]);
     }
 
     /**
@@ -34,9 +38,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show ($id)
     {
-        //
+        $product = Product::firstWhere("id", $id);
+        
+        return view("Product.showOne", [
+            "product" => $product
+        ]);
     }
 
     /**
